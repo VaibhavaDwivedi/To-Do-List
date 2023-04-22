@@ -3,23 +3,29 @@ import List from "./List";
 import Task from "./Task";
 
 function App() {
-  //useState hook to store data and alert state
-  const [data, setData] = useState(["Reading", "listening music"]);
-  const [alert, setAlert] = useState(false);
+  const savedDataString = localStorage.getItem("ThingToDo") || "{}";
+  const savedData = JSON.parse(savedDataString);
+  console.log(savedData);
 
-  //   localStorage.setItem("name", JSON.stringify(data));
+  //useState hook to store data and alert state
+  // const [data, setData] = useState(["Reading", "listening music"]);
+  const [state, setState] = useState(["reading", "play"]);
+  const [alert, setAlert] = useState(false);
 
   //function to delete tasks from list
   const handleDelete = (idx) => {
-    setData(data.filter((item, i) => i !== idx));
+    setState(state.filter((item, i) => i !== idx));
+    // localStorage.removeItem("name");
   };
 
   //function to add new tasks from input to display
   const HandleClick = () => {
     let newTodo = document.getElementById("inp").value;
-    newTodo === "" ? setAlert(true) : setData((prev) => [...prev, newTodo]);
+    newTodo === "" ? setAlert(true) : setState((prev) => [...prev, newTodo]);
+    localStorage.setItem("name", JSON.stringify(state));
   };
 
+  const data = JSON.parse(localStorage.getItem("name"));
   return (
     <>
       <div className="text-4xl ">ToDo List</div>
