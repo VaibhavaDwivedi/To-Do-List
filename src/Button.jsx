@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-function Nutton({ className, ...child }) {
+function Button({ className, ...child }) {
   // Return a button element with specific styling and props
   return (
     <button
@@ -15,4 +15,4 @@ function Nutton({ className, ...child }) {
 }
 
 // Export the component as a memoized version to prevent multiple re-rendering
-export default memo(Nutton);
+export default memo(Button);
