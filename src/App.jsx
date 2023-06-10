@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <div className="text-4xl ">ToDo List</div>
+      <div className="text-4xl">ToDo List</div>
       <div className="flex flex-col items-center justify-center w-full h-screen dark:bg-slate-600">
         <div>Things to get done</div>
         <div className="flex flex-col gap-2 px-2 py-4 shadow-xl bg-slate-350 dark:bg-teal-800 w-80">

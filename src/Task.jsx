@@ -16,7 +16,7 @@ function Task({ alert, onAddClick }) {
         Add Task
       </Button>
       {add && (
-        <div className="flex flex-col self-center bg-auto shadow-lg w-80">
+        <div className="flex flex-col self-center bg-auto w-80">
           <div className="flex flex-row self-center">
             <input
               className="self-center bg-white dark:bg-black dark:text-gray-50"
