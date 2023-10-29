@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import Button from "./Button";
 import { AiOutlinePlus } from "react-icons/ai";
 
-function Task({ alert, onAddClick }) {
+function Task({ data, setData }) {
   const [add, setAdd] = useState(false);
+  // const [alert, setAlert] = useState(false);
+
+  const [newTask, setNewTask] = useState("");
+  //function to add new tasks from input to display
+  const HandleAddTask = () => {
+    // let newTodo = document.getElementById("inp").value;
+    newTask !== "" && setData([...data, newTask]);
+    localStorage.setItem("data", JSON.stringify(data));
+    setNewTask("");
+  };
+
   return (
     <div className="flex flex-col">
-      {alert && <div className="mx-auto text-red-500">Given Task is blank</div>}
       <Button
         onClick={() => {
           setAdd((prevCheck) => !prevCheck); //this will change the state from true to false and false to true
@@ -19,14 +29,26 @@ function Task({ alert, onAddClick }) {
         <div className="flex flex-col self-center bg-auto w-80">
           <div className="flex flex-row self-center">
             <input
-              className="self-center bg-white dark:bg-black dark:text-gray-50"
-              id="inp"
+              value={newTask}
+              onChange={(e) => {
+                setNewTask(e.target.value);
+              }}
+              type="text"
               placeholder="Add new task..."
+              className="self-center bg-white dark:bg-black dark:text-gray-50"
+              // id="inp"
             />
-            <AiOutlinePlus
-              onClick={onAddClick}
-              className="m-2 active:scale-95"
-            />
+            {newTask !== "" ? (
+              <AiOutlinePlus
+                onClick={HandleAddTask}
+                className="m-2 active:scale-95 text-black"
+              />
+            ) : (
+              <AiOutlinePlus
+                onClick={HandleAddTask}
+                className="m-2 active:scale-95 text-gray-400"
+              />
+            )}
           </div>
           <Button
             onClick={() => {
